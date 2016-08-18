@@ -6,8 +6,8 @@ from panorama.panorama import Stitcher
 import imutils
 import cv2
 
-firstImage = 'images/sedona_left_01.png'
-secondImage = 'images/sedona_right_01.png'
+firstImage = 'images/yosemite2.jpg'
+secondImage = 'images/yosemite3.jpg'
 
 
 # load the two images and resize them to have a width of 400 pixels
