@@ -1,7 +1,3 @@
-# USAGE
-# python stitch.py --first images/bryce_left_01.png --second images/bryce_right_01.png 
-
-# import the necessary packages
 from panorama.panorama import Stitcher
 import imutils
 import numpy as np
@@ -9,33 +5,34 @@ import os
 import cv2
 
 def cropFocus(img):
+	subtractThresh = 20
+
+
 	gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	_, thresh = cv2.threshold(gray,1,255,cv2.THRESH_BINARY)
 	contours = cv2.findContours(thresh,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
 	cnt = contours[0]
 	x,y,w,h = cv2.boundingRect(cnt)
-	crop = img[y:y+h,x:x+w]
+	crop = img[y:y+h,x:x+w-subtractThresh]
 	return crop
 
+def listDirCreate(root):
+	for imgPath in root:
+		imgPathList.append(imgPath)
+	imgPathList.sort()
+	return imgPathList
 
-'''
-firstImage = 'images/yosemite2.jpg'
-secondImage = 'images/yosemite3.jpg'
-'''
 
 root_path = 'panorama-input/'
 slash = '/'
 root = os.listdir(root_path)
 
 i = 0
-
+result = None
 imgPathList = []
 
 # Creating list of paths
-for imgPath in root:
-	imgPathList.append(imgPath)
-
-imgPathList.sort()
+listDirCreate = listDirCreate(root)
 
 print imgPathList
 for fn in imgPathList:
@@ -59,13 +56,19 @@ for fn in imgPathList:
 		mainImage = cropFocus(result)
 
 		# show the images
-		
+		'''	
 		cv2.imshow("Image A", mainImage)
 		cv2.imshow("Image B", imageB)
-		
+		'''
+		'''
 		cv2.imwrite("result.jpg", result)
 
 		cv2.imshow("Result", result)
 		cv2.waitKey(0)
+		'''
 		i = i + 1
 
+
+cv2.imwrite("result.jpg", result)
+cv2.imshow("Result", result)
+cv2.waitKey(0)
