@@ -13,15 +13,20 @@ def on_mouse(event,x,y,flags,params):
     if event == cv2.EVENT_LBUTTONDOWN:
 
         if startPoint == True and endPoint == True:
+	    # Resets and delete box once you are done
             startPoint = False
             endPoint = False
             rect = (0, 0, 0, 0)
 
         if startPoint == False:
+	    # First click, waits for final click to create box
             rect = (x, y, 0, 0)
             startPoint = True
         elif endPoint == False:
+	    # creates the box (I think(
             rect = (rect[0], rect[1], x, y)
+            print '________________'
+	    print 'Rectangle location: ', rect[0], ' ', rect[1], ' ', x, ' ', y
             endPoint = True
 
 cap = cv2.VideoCapture(0)

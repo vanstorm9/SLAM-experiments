@@ -50,6 +50,6 @@ dst = dst[y:y+h, x:x+w]
 cv2.imwrite('calibresult.png', dst)
 
 
-np.savez('B.npz', mtx, dist) 
-
-
+np.save('calib-matrix/mtx.npy', mtx)
+np.save('calib-matrix/dist.npy', dist)
+print 'Calibration completed!'
