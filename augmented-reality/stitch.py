@@ -66,8 +66,9 @@ for fn in imgPathList:
 
 		# stitch the images together to create a panorama
 		stitcher = Stitcher()
-		result =  stitcher.stitch([mainImage, imageB], showMatches=False)
+		result, vis =  stitcher.stitch([mainImage, imageB], showMatches=False)
 		mainImage = cropFocus(result)
+
 
 		# show the images
 		'''	

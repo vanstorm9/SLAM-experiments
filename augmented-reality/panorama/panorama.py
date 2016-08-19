@@ -34,6 +34,7 @@ class Stitcher:
 
 		# check to see if the keypoint matches should be visualized
 		if showMatches:
+			print imageB.shape
 			vis = self.drawMatches(imageA, imageB, kpsA, kpsB, matches,
 				status)
 
