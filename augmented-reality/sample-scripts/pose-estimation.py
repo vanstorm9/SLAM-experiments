@@ -45,12 +45,12 @@ for fname in glob.glob('images/*.jpg'):
     img = cv2.imread(fname)
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     ret, corners = cv2.findChessboardCorners(gray, (7,6),None)
-	
-    print type(corners)
+    '''	
+    print corners
     print corners.shape
+    '''
     if ret == True:
         corners2 = cv2.cornerSubPix(gray,corners,(11,11),(-1,-1),criteria)
-        
 	# Find the rotation and translation vectors.
         ret,rvecs, tvecs = cv2.solvePnP(objp, corners2, mtx, dist)
 
